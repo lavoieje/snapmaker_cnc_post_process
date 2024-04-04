@@ -10,21 +10,21 @@
  FORKID {CB457AE9-77B4-4F88-B95A-4DC6980DBE3D}
  */
 
-description = 'FANUC - Inverse Time and A-axis';
-vendor = 'Fanuc';
-vendorUrl = 'http://www.fanuc.com';
+description = 'Snapy B-axis DPM_COMBINATION';
+vendor = '';
+vendorUrl = '';
 legal = 'Copyright (C) 2012-2018 by Autodesk, Inc.';
 certificationLevel = 2;
 minimumRevision = 40783;
 
-longDescription = 'Generic Fanuc post illustrating inverse time feed with an A-axis.';
+longDescription = 'Generic Snapmaker post using DPM with B-axis.';
 
 extension = 'cnc';
 programNameIsInteger = true;
 setCodePage('ascii');
 
 capabilities = CAPABILITY_MILLING;
-tolerance = spatial(0.2, MM);
+tolerance = spatial(0.002, MM);
 
 minimumChordLength = spatial(10, MM);
 minimumCircularRadius = spatial(10, MM);
@@ -452,6 +452,8 @@ function onOpen() {
             preference: 1
         });
         machineConfiguration = new MachineConfiguration(bAxis);
+        
+ machineConfiguration.setMultiAxisFeedrate(FEED_DPM, 2400, DPM_COMBINATION, 0.1, 1);
 
         setMachineConfiguration(machineConfiguration);
         optimizeMachineAngles2(1); // map tip mode
